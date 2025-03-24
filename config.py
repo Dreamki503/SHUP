@@ -16,7 +16,7 @@ load_dotenv()
 password = os.getenv("password")
 escaped_password = quote_plus(password)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql://{os.getenv("user")}:{escaped_password}@{os.getenv("host")}/{os.getenv("database")}'
+app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql+pymysql://{os.getenv("user")}:{escaped_password}@{os.getenv("host")}/{os.getenv("database")}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv("secret_key")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
