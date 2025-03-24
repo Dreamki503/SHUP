@@ -2,13 +2,12 @@
   "builds": [
     {
       "src": "main.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "main.py"
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": ["requirements.txt"],
+        "installCommand": "apt-get update && apt-get install -y default-libmysqlclient-dev && pip install -r requirements.txt"
+      }
     }
   ]
 }
+
