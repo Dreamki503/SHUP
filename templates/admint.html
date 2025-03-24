@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Chat</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <h2>Admin Panel</h2>
+    <ul id="messages"></ul>
+    <input id="adminMessageInput" placeholder="Reply..." />
+    <button onclick="sendAdminMessage()">Reply</button>
+
+    <script>
+        var socket = io();
+
+        function sendAdminMessage() {
+            let message = document.getElementById("adminMessageInput").value;
+            socket.emit('admin_message', message);
+            document.getElementById("adminMessageInput").value = ""; // Clear input
+        }
+
+        socket.on('new_message', function(data) {
+            let li = document.createElement("li");
+            li.textContent = `${data.sender}: ${data.message}`;
+            document.getElementById("messages").appendChild(li);
+        });
+    </script>
+</body>
+</html>

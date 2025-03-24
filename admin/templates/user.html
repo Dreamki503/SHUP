@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="table-container">
+    <!-- <h1>USERS</h1> -->
+    <form method="GET" action="{{ url_for('admin_bp.user') }}">
+        <div class="search-container">
+            <input type="text" id="search-input" name="search" placeholder="Search users..." value="{{ search_query }}">
+            <i class='bx bx-search-alt'></i>
+            <i class='bx bx-x' id="clear-search"></i>
+        </div>
+        <button type="submit" style="display: none;">Search</button>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              <div class="flash-messages">
+                  {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">{{ message }}</div>
+                  {% endfor %}
+              </div>
+          {% endif %}
+          {% endwith %}
+<section class="user-data">
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>created_at</th>
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in users %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.username}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.phone}}</td>
+                <td>{{i.role}}</td>
+                <td>{{i.created_at}}</td>
+                <td>
+                    <form action="{{url_for('admin_bp.update', id = i.id)}}" method="POST">
+                        <button class="update-btn" type="submit"><i class='bx bxs-edit'></i></button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{url_for('admin_bp.delete', id = i.id)}}" method="POST">
+                        <button class="delete-btn" type="submit"><i class='bx bx-trash'></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let searchInput = document.getElementById("search-input");
+        let clearSearch = document.getElementById("clear-search");
+
+        function toggleClearIcon() {
+            clearSearch.style.display = searchInput.value ? "block" : "none";
+        }
+
+        // Show or hide 'X' based on input
+        searchInput.addEventListener("input", toggleClearIcon);
+
+        // Clear input and reset search on 'X' click
+        clearSearch.addEventListener("click", function () {
+            searchInput.value = "";
+            toggleClearIcon();
+            window.location.href = "{{ url_for('admin_bp.user') }}"; // Reload to show all results
+        });
+
+        // Ensure correct icon state on page load
+        toggleClearIcon();
+    });
+</script>
+
+{% endblock %}

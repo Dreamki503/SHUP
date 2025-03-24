@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>CATEGORIES</h1>
+
+        <section class="category-metrics">
+            {% for i in categories %}
+            <a href="{{url_for('admin_bp.category_products', category_id = i.id)}}" class="card">
+                    <p>{{i.category_name}}</p>
+            </a>
+            {% endfor %}
+            <a href="{{url_for('admin_bp.add_category')}}" class="card">
+                <p><i class='bx bx-plus-circle'></i></p>
+        </a>
+        </section>
+    </div>
+{% endblock %}

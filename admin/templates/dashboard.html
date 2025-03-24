@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>DASHBOARD</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              <div class="flash-messages">
+                  {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">{{ message }}</div>
+                  {% endfor %}
+              </div>
+          {% endif %}
+          {% endwith %}
+
+        <!-- Dashboard Metrics -->
+        <section class="dashboard-metrics">
+            <div class="card">
+                <h2>Total Sales</h2>
+                <p>₹<span id="sales-value">25,024</span></p>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Total Expenses</h2>
+                <p>₹<span id="expenses-value">14,160</span></p>
+                <canvas id="expensesChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Total Income</h2>
+                <p>₹<span id="income-value">10,864</span></p>
+                <canvas id="incomeChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Customer Orders Table -->
+<!-- Order Metrics Section (3 Cards) -->
+<section class="order-metrics">
+  <a href="{{url_for('admin_bp.pending')}}" class="card">
+          <h2>Pending Orders</h2>
+          <p class="pending"><span id="pending-orders">{{pending}}</span></p>
+  </a>
+  <a href="{{url_for('admin_bp.approved')}}" class="card">
+      <h2>Approved Orders</h2>
+      <p class="approved"><span id="approved-orders">{{approved}}</span></p>
+  </a>
+  <a href="{{url_for('admin_bp.completed')}}" class="card">
+      <h2>Completed Orders</h2>
+      <p class="completed"><span id="completed-orders">{{completed}}</span></p>
+  </a>
+</section>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Chart.js for Sales
+        const salesChart = new Chart(document.getElementById('salesChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{ label: 'Sales', data: [12000, 15000, 18000, 20000, 25000], backgroundColor: '#3498db' }]
+            }
+        });
+
+        // Chart.js for Expenses
+        const expensesChart = new Chart(document.getElementById('expensesChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{ label: 'Expenses', data: [5000, 7000, 9000, 11000, 14000], backgroundColor: '#e74c3c' }]
+            }
+        });
+
+        // Chart.js for Income
+        const incomeChart = new Chart(document.getElementById('incomeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{ label: 'Income', data: [7000, 8000, 9000, 10000, 11000], backgroundColor: '#2ecc71' }]
+            }
+        });
+    </script>
+{% endblock %}

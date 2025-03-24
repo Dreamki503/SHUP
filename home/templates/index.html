@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHUP</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles/index.css')}}">
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles/color-1.css')}}">
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="{{url_for('home_bp.home')}}" class="nav_logo">
+                <i class="bx bxs-shopping--bags nav_logo-icons"></i>
+                SHUP
+            </a>
+            <div class="nav_menu" id="nav-menu">
+                <ul class="nav_list">
+                    <li class="nav__item">
+                        <a href="{{url_for('home_bp.home')}}" class="nav_link active-link">Home</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">Shop</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">Cart</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">Blog</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">Faq's</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav_btns">
+                <div class="login_toggle" id="login-toggle">
+                    <a href="{{url_for('login_bp.login')}}"><i class="bx bx-user"></i></a>
+                </div>
+                <div class="nav_shop" id="cart-shop">
+                    <i class="bx bx-shopping-bag"></i>
+                </div>
+                <div class="nav_toggle" id="nav-toggle">
+                    <i class="bx bx-grid-alt"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CART  -->
+     <div class="cart" id="cart">
+        <i class="bx bx-x cart_close"></i>
+        <h2 class="cart_title-center">My Cart</h2>
+        <div class="cart_container">
+            <article class="cart_card">
+                <div class="cart_box">
+                    <img src="{{url_for('static', filename = 'assets/cart-1.png')}}" alt="" class="cart_img">
+                </div>
+                <div class="cart_details">
+                    <h3 class="cart_title">Windbreaker</h3>
+                    <span class="cart_price">₹12</span>
+
+                    <div class="cart_amount">
+                        <div class="cart_amount-content">
+                            <span class="cart_amount-box">
+                                <i class="bx bx-minus"></i>
+                            </span>
+                            <span class="cart_amount-number">1</span>
+                            <span class="cart_amount-box">
+                                <i class="bx bx-plus"></i>
+                            </span>
+                        </div>
+                        <i class="bx bx-trash-alt cart_amount-trash"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cart_card">
+                <div class="cart_box">
+                    <img src="{{url_for('static', filename = 'assets/cart-2.png')}}" alt="" class="cart_img">
+                </div>
+                <div class="cart_details">
+                    <h3 class="cart_title">Cardigan Hoodie</h3>
+                    <span class="cart_price">₹12</span>
+
+                    <div class="cart_amount">
+                        <div class="cart_amount-content">
+                            <span class="cart_amount-box">
+                                <i class="bx bx-minus"></i>
+                            </span>
+                            <span class="cart_amount-number">1</span>
+                            <span class="cart_amount-box">
+                                <i class="bx bx-plus"></i>
+                            </span>
+                        </div>
+                        <i class="bx bx-trash-alt cart_amount-trash"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cart_card">
+                <div class="cart_box">
+                    <img src="{{url_for('static', filename = 'assets/cart-3.png')}}" alt="" class="cart_img">
+                </div>
+                <div class="cart_details">
+                    <h3 class="cart_title">Cartoon</h3>
+                    <span class="cart_price">₹12</span>
+
+                    <div class="cart_amount">
+                        <div class="cart_amount-content">
+                            <span class="cart_amount-box">
+                                <i class="bx bx-minus"></i>
+                            </span>
+                            <span class="cart_amount-number">1</span>
+                            <span class="cart_amount-box">
+                                <i class="bx bx-plus"></i>
+                            </span>
+                        </div>
+                        <i class="bx bx-trash-alt cart_amount-trash"></i>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="cart_prices">
+            <span class="cart_prices-item">3 items</span>
+            <span class="cart_prices-total">₹2000</span>
+        </div>
+     </div>
+
+     <!-- MAIN SECTION  -->
+      <main class="main">
+        <!-- HOME  -->
+        <section class="home container">
+            <div class="swiper home-swiper">
+                <div class="swiper-wrapper">
+                    <!-- HOME SWIPER I -->
+                    <section class="swiper-slide">
+                        <div class="home_content grid">
+                            <div class="home_group">
+                                <img src="{{url_for('static', filename = 'assets/slide-2.png')}}" alt="" class="home_img">
+                                <div class="home_indicator"></div>
+ 
+                                <div class="home_details-img">
+                                    <h4 class="home_details-title">The "Cardigan"</h4>
+                                    <span class="home_details-subtitle">Woolen</span>
+                                </div>
+                            </div>
+ 
+                            <div class="home_data">
+                                <h3 class="home_subtitle">#1 TRENDING ITEM</h3>
+                                <h1 class="home_title">ORIGINAL <br> IS NEVER <br> FINISHED!!</h1>
+                                <p class="home_description">A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to excptional quality.</p>
+ 
+                                <div class="home_buttons">
+                                    <a href="details.html" class="button">Buy Now</a>
+                                    <a href="detials.html" class="button-link button-flex">View Details <i class="bx bx-right-arrow-alt button_icon"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                     </section>
+
+                     <!-- HOME SWIPPER II  -->
+                     <section class="swiper-slide">
+                        <div class="home_content grid">
+                            <div class="home_group">
+                                <img src="{{url_for('static', filename = 'assets/slide-3.png')}}" alt="" class="home_img">
+                                <div class="home_indicator"></div>
+
+                                <div class="home_details-img">
+                                    <h4 class="home_details-title">Jqueegy</h4>
+                                    <span class="home_details-subtitle">Ski Suit</span>
+                                </div>
+                            </div>
+
+                            <div class="home_data">
+                                <h3 class="home_subtitle">#2 TRENDING ITEM</h3>
+                                <h1 class="home_title">ORIGINAL <br> IS NEVER <br> FINISHED!!</h1>
+                                <p class="home_description">A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to excptional quality.</p>
+
+                                <div class="home_buttons">
+                                    <a href="details.html" class="button">Buy Now</a>
+                                    <a href="detials.html" class="button-link button-flex">View Details <i class="bx bx-right-arrow-alt button_icon"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                     </section>
+
+                     <!-- HOME SWIPPER III -->
+                     <section class="swiper-slide">
+                        <div class="home_content grid">
+                            <div class="home_group">
+                                <img src="{{url_for('static', filename = 'assets/slide-1.png')}}" alt="" class="home_img">
+                                <div class="home_indicator"></div>
+
+                                <div class="home_details-img">
+                                    <h4 class="home_details-title">The "Cardigan"</h4>
+                                    <span class="home_details-subtitle">Woolen</span>
+                                </div>
+                            </div>
+
+                            <div class="home_data">
+                                <h3 class="home_subtitle">#1 TRENDING ITEM</h3>
+                                <h1 class="home_title">ORIGINAL <br> IS NEVER <br> FINISHED!!</h1>
+                                <p class="home_description">A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to excptional quality.</p>
+
+                                <div class="home_buttons">
+                                    <a href="details.html" class="button">Buy Now</a>
+                                    <a href="detials.html" class="button-link button-flex">View Details <i class="bx bx-right-arrow-alt button_icon"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </section>
+      </main>
+
+
+
+    <script src="{{url_for('static', filename = 'js/index.js')}}"></script>
+</body>
+</html>

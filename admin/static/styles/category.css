@@ -1,0 +1,35 @@
+/* Order Metrics Layout (Same as Dashboard Cards) */
+.category-metrics {
+    /* display: flex;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Cards Style */
+.category-metrics .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10rem;
+    flex: 1;
+    background: #fff; /* Matches Dashboard */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #444;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.category-metrics .card p{
+    font-size: 2.5rem;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .category-metrics {
+        flex-direction: column;
+    }
+}

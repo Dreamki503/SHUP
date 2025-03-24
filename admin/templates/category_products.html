@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="table-container">
+    <h1>{{category.category_name}}</h1>
+<section class="user-data">
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>stock</th>
+                <th>Availability</th>
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in products %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.product_name}}</td>
+                <td>{{i.description}}</td>
+                <td>{{i.price}}</td>
+                <td>{{i.stock}}</td>
+                <td>{{i.is_available}}</td>
+                <td>
+                    <form action="" method="POST">
+                        <button class="update-btn" type="submit"><i class='bx bxs-edit'></i></button>
+                    </form>
+                </td>
+                <td>
+                    <form action="" method="POST">
+                        <button class="delete-btn" type="submit"><i class='bx bx-trash'></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+</div>
+{% endblock %}

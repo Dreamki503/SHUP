@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>SETTINGS</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+<section>
+    <form action="{{url_for('admin_bp.setting_update')}}" method="post" enctype="multipart/form-data" class="profile">
+        <div class="pic">
+            <span class="profile-pic"><img id = "preview" src="{{url_for('static', filename= current_user.profile_pic or 'assets/blank.jpg')}}" alt="Profile Picture"></span>
+            <input type="file" id="file" name="profile_pic" accept="image/*">
+            <label for="file">select a file...</label>
+        </div>
+        <div class="bio">
+            <input type="text" placeholder="Full Name" value="{{current_user.username}}" name="username">
+            <input type="email" placeholder="Email" value="{{current_user.email}}" name="email">
+            <input type="text" placeholder="Phone" value="{{current_user.phone}}" name="ph">
+            <form action="{{url_for('admin_bp.update', id = current_user.id)}}">
+                <button class="save-btn" type="submit">Save</button>
+            </form>
+        </div>
+    </form>
+</section>
+</div>
+<script>
+    document.getElementById("file").onchange = function(event) {
+        const reader = new FileReader();
+        reader.onload = function(){
+            document.getElementById("preview").src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHUP</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/admin.css')}}">
+</head>
+<body>
+    <!-- {% for i in get_flashed_messages() %}
+    <p>{{ i }}</p>
+    {% endfor %} -->
+    <h1>Welcome {{users.username}} !!</h1>
+    <h1>You are an Admin</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Created on</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.created_at}}</td>
+                <td><a href="/update/{{user.id}}"><button>Update</button></a></td>
+                <td>
+                    <form method="post" action="{{url_for('delete', id = user.id)}}" style="display: inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="{{url_for('add')}}" method="post">
+        <input type="text" name="username" placeholder="username">
+        <input type="email" name="email" placeholder="email">
+        <input type="text" name="password" placeholder="password">
+        <input type="text" name="role" placeholder="role">
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Admin Panel</h2>
+    <ul id="messages"></ul>
+    <input id="adminMessageInput" placeholder="Reply..." />
+    <button type = 'submit' onclick="sendAdminMessage()">Reply</button>
+
+    <a href="{{url_for('login_bp.logout')}}"><button>Logout</button></a>
+
+    <script>
+        var socket = io();
+
+        function sendAdminMessage() {
+            let message = document.getElementById("adminMessageInput").value;
+            socket.emit('admin_message', message);
+            document.getElementById("adminMessageInput").value = ""; // Clear input
+        }
+
+        socket.on('new_message', function(data) {
+            let li = document.createElement("li");
+            li.textContent = `${data.sender}: ${data.message}`;
+            document.getElementById("messages").appendChild(li);
+        });
+    </script>
+</body>
+</html>

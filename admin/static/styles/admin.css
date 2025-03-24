@@ -1,0 +1,22 @@
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td{
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: left;
+    overflow: hidden;
+}
+
+thead{
+    background-color: lightgrey;
+}
+
+form{
+    display: inline-flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}

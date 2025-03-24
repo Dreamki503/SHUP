@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHUP</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('admin_bp.static',filename = 'styles/base.css')}}">
+    <link rel="stylesheet" href="{{url_for('admin_bp.static',filename = 'styles/setting.css')}}">
+    <link rel="stylesheet" href="{{url_for('admin_bp.static',filename = 'styles/user.css')}}">
+    <link rel="stylesheet" href="{{url_for('admin_bp.static',filename = 'styles/notification.css')}}">
+    <link rel="stylesheet" href="{{url_for('admin_bp.static',filename = 'styles/add.css')}}">
+    <link rel="stylesheet" href="{{url_for('admin_bp.static',filename = 'styles/update.css')}}">
+    <link rel="stylesheet" href="{{url_for('admin_bp.static',filename = 'styles/dashboard.css')}}">
+    <link rel="stylesheet" href="{{url_for('admin_bp.static',filename = 'styles/category.css')}}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details tap">
+            <i class='bx bxl-stripe'></i>
+            <span class="logo_name">SHUP</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{{url_for('admin_bp.dashboard')}}">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link_name">Dashboard</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="{{url_for('admin_bp.dashboard')}}">Dashboard</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{url_for('admin_bp.category')}}">
+                    <i class="bx bx-collection"></i>
+                    <span class="link_name">Category</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="{{url_for('admin_bp.category')}}">Category</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a href="{{url_for('admin_bp.user')}}">
+                        <i class="bx bx-user"></i>
+                        <span class="link_name">User</span>
+                    </a>
+                    <i class="bx bxs-chevron-down arrow"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="{{url_for('admin_bp.user')}}">Users</a></li>
+                    <li><a href="{{url_for('admin_bp.user')}}">User</a></li>
+                    <li><a href="{{url_for('admin_bp.add')}}">Add</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a href="{{url_for('admin_bp.pending')}}">
+                        <i class='bx bx-cart'></i>
+                        <span class="link_name">Orders</span>
+                    </a>
+                    <i class="bx bxs-chevron-down arrow"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="{{url_for('admin_bp.pending')}}">Orders</a></li>
+                    <li><a href="{{url_for('admin_bp.pending')}}">Pending</a></li>
+                    <li><a href="{{url_for('admin_bp.approved')}}">Aproved</a></li>
+                    <li><a href="{{url_for('admin_bp.completed')}}">Completed</a></li>
+                </ul>
+            </li>
+            <!-- <li>
+                <a href="{{url_for('admin_bp.inventory')}}">
+                    <i class='bx bx-store'></i>
+                    <span class="link_name">Inventory</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="{{url_for('admin_bp.inventory')}}">Inventory</a></li>
+                </ul>
+            </li> -->
+            <li>
+                <a href="{{url_for('admin_bp.setting')}}">
+                    <i class='bx bx-cog' ></i>
+                    <span class="link_name">Settings</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="{{url_for('admin_bp.setting')}}">Settings</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="profile-details">
+                    <a href="{{url_for('admin_bp.setting')}}">
+                        <div class="profile-content">
+                            <img src="{{url_for('static', filename= current_user.profile_pic or 'assets/blank.jpg')}}" alt="profile">
+                        </div>
+                        <div class="name-job">
+                            <div class="profile_name">{{current_user.username}}</div>
+                            <div class="job">Admin</div>
+                        </div>
+                    </a>
+                    <a href="{{url_for('login_bp.logout')}}"><i class='bx bx-log-out'></i></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <main class="home-section">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{url_for('admin_bp.static', filename = 'js/base.js')}}"></script>
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(alert => alert.remove());
+        }, 4000); // 3 seconds
+    </script>
+</body>
+</html>

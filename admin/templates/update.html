@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="update-container">
+    <form action="{{url_for('admin_bp.update', id = user.id)}}" method="post">
+        <input type="text" name="username" placeholder="username" value="{{user.username}}">
+        <input type="email" name="email" placeholder="email" value="{{user.email}}">
+        <input type="text" name="phone" placeholder="phone" value="{{user.phone}}">
+        <input type="text" name="role" placeholder="role" value="{{user.role}}">
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+
+{% endblock %}
